@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <View
+        android:id="@+id/viewToolBar"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/green_mountain_meadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginStart="10dp"
+        android:background="?selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolBar"
+        app:layout_constraintStart_toStartOf="@id/viewToolBar"
+        app:layout_constraintTop_toTopOf="@id/viewToolBar" />
+
+    <TextView
+        android:id="@+id/textToolbarTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:fontFamily="@font/fira_sans_bold"
+        android:gravity="center_vertical"
+        android:text="@string/app_name"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolBar"
+        app:layout_constraintEnd_toStartOf="@id/buttonSearch"
+        app:layout_constraintStart_toEndOf="@id/buttonBack"
+        app:layout_constraintTop_toTopOf="@id/viewToolBar" />
+
+    <ImageButton
+        android:id="@+id/buttonSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="?selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_search"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolBar"
+        app:layout_constraintEnd_toEndOf="@id/viewToolBar"
+        app:layout_constraintTop_toTopOf="@id/viewToolBar" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerDish"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        android:paddingHorizontal="10dp"
+        app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+        app:spanCount="2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/viewToolBar"
+        tools:listitem="@layout/item_dish"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

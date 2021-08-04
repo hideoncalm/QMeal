@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white">
+
+    <View
+        android:id="@+id/viewToolbar"
+        android:layout_width="0dp"
+        android:layout_height="?actionBarSize"
+        android:background="@color/green_mountain_meadow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/buttonBack"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/dp_10"
+        android:background="?android:selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_arrow_back_24"
+        app:layout_constraintBottom_toBottomOf="@+id/viewToolbar"
+        app:layout_constraintStart_toStartOf="@id/viewToolbar"
+        app:layout_constraintTop_toTopOf="@+id/viewToolbar"
+        app:layout_constraintWidth_percent="0.08" />
+
+    <TextView
+        android:id="@+id/textTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_16"
+        android:fontFamily="@font/fira_sans_bold"
+        android:gravity="center"
+        android:text="@string/app_name"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/sp_24"
+        app:layout_constraintBottom_toBottomOf="@+id/viewToolbar"
+        app:layout_constraintStart_toEndOf="@id/buttonBack"
+        app:layout_constraintTop_toTopOf="@+id/viewToolbar" />
+
+
+    <ImageButton
+        android:id="@+id/buttonFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="?selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_un_favorite"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolbar"
+        app:layout_constraintEnd_toEndOf="@id/viewToolbar"
+        app:layout_constraintTop_toTopOf="@id/viewToolbar" />
+
+    <ImageButton
+        android:id="@+id/buttonUnFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="?selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_favorite_red"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/viewToolbar"
+        app:layout_constraintEnd_toEndOf="@id/viewToolbar"
+        app:layout_constraintTop_toTopOf="@id/viewToolbar" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/viewToolbar">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <View
+                android:id="@+id/viewDescription"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginTop="@dimen/dp_10"
+                android:alpha="0.4"
+                android:background="@drawable/background_description"
+                app:layout_constraintBottom_toBottomOf="@id/textIngredient"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textIngredient"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:fontFamily="@font/fira_sans"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintBottom_toBottomOf="@id/viewDescription"
+                app:layout_constraintEnd_toEndOf="@+id/viewDescription"
+                app:layout_constraintStart_toStartOf="@+id/viewDescription"
+                app:layout_constraintTop_toTopOf="@+id/viewDescription"
+                tools:text="@tools:sample/lorem" />
+
+            <TextView
+                android:id="@+id/textDishRelated"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/dp_10"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="@dimen/dp_8"
+                android:fontFamily="@font/fira_sans_bold"
+                android:text="Meal Relate"
+                android:textColor="@android:color/black"
+                android:textSize="@dimen/sp_18"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/viewDescription" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerDish"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingHorizontal="@dimen/dp_10"
+                app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textDishRelated"
+                app:spanCount="2"
+                tools:listitem="@layout/item_dish" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
