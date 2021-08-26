@@ -2,4 +2,5 @@
     <string name="app_name">QMeal</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="youtube_api_key">AIzaSyB4Qt6aE9cJ8V0qlGuh1b0FYr6CRKeiNt8</string>
 </resources>

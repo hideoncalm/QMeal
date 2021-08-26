@@ -22,6 +22,12 @@
         <action
             android:id="@+id/action_favoriteFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_dishDetailFragment"
+            app:destination="@id/dishDetailFragment" />
+        <action
+            android:id="@+id/action_favoriteFragment_to_ingredientDetailFragment"
+            app:destination="@id/ingredientDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/settingFragment"
@@ -46,20 +52,18 @@
         android:id="@+id/searchFragment"
         android:name="com.quyenln.qmeal.ui.search.SearchFragment"
         android:label="SearchFragment">
-        <action
-            android:id="@+id/action_searchFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/listDishFragment"
         android:name="com.quyenln.qmeal.ui.listdish.ListDishFragment"
         android:label="ListDishFragment">
+        <argument
+            android:name="categoryName"
+            app:argType="string" />
         <action
             android:id="@+id/action_listDishFragment_to_dishDetailFragment"
             app:destination="@id/dishDetailFragment" />
-        <action
-            android:id="@+id/action_listDishFragment_to_categoryFragment"
-            app:destination="@id/categoryFragment" />
         <action
             android:id="@+id/action_listDishFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -69,37 +73,22 @@
         android:name="com.quyenln.qmeal.ui.detail.ingredient.IngredientDetailFragment"
         android:label="IngredientDetailFragment">
         <action
-            android:id="@+id/action_ingredientDetailFragment_to_ingredientFragment"
-            app:destination="@id/ingredientFragment" />
-        <action
             android:id="@+id/action_ingredientDetailFragment_to_dishDetailFragment"
             app:destination="@id/dishDetailFragment" />
+        <argument
+            android:name="ingredient"
+            app:argType="com.quyenln.qmeal.data.model.Ingredient" />
     </fragment>
     <fragment
         android:id="@+id/dishDetailFragment"
         android:name="com.quyenln.qmeal.ui.detail.dish.DishDetailFragment"
         android:label="DishDetailFragment">
+        <argument
+            android:name="mealId"
+            app:argType="integer" />
         <action
             android:id="@+id/action_dishDetailFragment_to_ingredientDetailFragment"
             app:destination="@id/ingredientDetailFragment" />
-        <action
-            android:id="@+id/action_dishDetailFragment_to_listDishFragment"
-            app:destination="@id/listDishFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/favoriteIngredientFragment"
-        android:name="com.quyenln.qmeal.ui.favorite.ingredient.FavoriteIngredientFragment"
-        android:label="FavoriteIngredientFragment">
-        <action
-            android:id="@+id/action_favoriteIngredientFragment_to_ingredientDetailFragment"
-            app:destination="@id/ingredientDetailFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/favoriteDishFragment"
-        android:name="com.quyenln.qmeal.ui.favorite.dish.FavoriteDishFragment"
-        android:label="FavoriteDishFragment">
-        <action
-            android:id="@+id/action_favoriteDishFragment_to_dishDetailFragment"
-            app:destination="@id/dishDetailFragment" />
+
     </fragment>
 </navigation>

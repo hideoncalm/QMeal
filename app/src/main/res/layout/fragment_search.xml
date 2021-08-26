@@ -40,7 +40,7 @@
         android:gravity="center_vertical"
         android:hint="Click here to Search"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/viewToolBar"
         app:layout_constraintEnd_toStartOf="@id/buttonSearch"
         app:layout_constraintStart_toEndOf="@id/buttonBack"
