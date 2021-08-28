@@ -27,7 +27,7 @@ class DishDetailViewModel @Inject constructor(
     fun getMealById(id: Int) {
         viewModelScope.launch(Dispatchers.IO) {
             val response = mealRepository.getMealById(id)
-            val meal = response.meals[0]
+            val meal = response.meals!![0]
             meal.apply {
                 youtubeLink = youtubeLink.substring(
                     youtubeLink.indexOf('=') + 1,

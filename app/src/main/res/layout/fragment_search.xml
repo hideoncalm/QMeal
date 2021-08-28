@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    android:layout_height="match_parent">
 
     <View
         android:id="@+id/viewToolBar"
@@ -29,16 +29,16 @@
         app:layout_constraintTop_toTopOf="@id/viewToolBar" />
 
     <EditText
-        android:id="@+id/textToolbarTitle"
+        android:id="@+id/editTextSearch"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_margin="@dimen/dp_10"
-        android:paddingStart="10dp"
         android:background="@drawable/background_description"
         android:backgroundTint="@android:color/white"
         android:fontFamily="@font/fira_sans"
         android:gravity="center_vertical"
         android:hint="Click here to Search"
+        android:paddingStart="10dp"
         android:textColor="@color/black"
         android:textSize="15sp"
         app:layout_constraintBottom_toBottomOf="@id/viewToolBar"
@@ -59,19 +59,33 @@
         app:layout_constraintEnd_toEndOf="@id/viewToolBar"
         app:layout_constraintTop_toTopOf="@id/viewToolBar" />
 
+    <ImageButton
+        android:id="@+id/buttonClearSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginEnd="10dp"
+        android:background="?selectableItemBackground"
+        android:backgroundTint="@android:color/transparent"
+        android:contentDescription="@null"
+        android:src="@drawable/ic_baseline_cancel_24"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@id/editTextSearch"
+        app:layout_constraintEnd_toEndOf="@id/editTextSearch"
+        app:layout_constraintTop_toTopOf="@id/editTextSearch" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerDish"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:orientation="vertical"
         android:layout_marginTop="10dp"
+        android:orientation="vertical"
         android:paddingHorizontal="10dp"
         app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
-        app:spanCount="2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/viewToolBar"
-        tools:listitem="@layout/item_dish"/>
+        app:spanCount="2"
+        tools:listitem="@layout/item_dish" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

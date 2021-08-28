@@ -9,8 +9,10 @@ import androidx.navigation.fragment.navArgs
 import com.quyenln.qmeal.R
 import com.quyenln.qmeal.data.model.Meal
 import com.quyenln.qmeal.ui.listdish.adapter.MealAdapter
+import com.quyenln.qmeal.util.CustomProgressBar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_dish_by_category.*
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class ListDishFragment : Fragment(R.layout.fragment_dish_by_category),
@@ -20,10 +22,17 @@ class ListDishFragment : Fragment(R.layout.fragment_dish_by_category),
     private val adapter by lazy { MealAdapter(this) }
     private val arg: ListDishFragmentArgs by navArgs()
 
+    @Inject
+    lateinit var loadingProgressBar: CustomProgressBar
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerDish.adapter = adapter
         textToolbarTitle.text = arg.categoryName
+        viewModel.isLoading.observe(viewLifecycleOwner, {
+            if (it == true) loadingProgressBar.showProgressBar(requireActivity())
+            else loadingProgressBar.dismissProgressBar()
+        })
         viewModel.getMealsByCategory(arg.categoryName)
         viewModel.meals.observe(viewLifecycleOwner, {
             adapter.updateData(it)

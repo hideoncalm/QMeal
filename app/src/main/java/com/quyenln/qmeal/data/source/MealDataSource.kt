@@ -8,6 +8,9 @@ interface MealDataSource {
     interface Remote {
         suspend fun getMealsByCategory(category: String): MealResponse
         suspend fun getMealById(id: Int): MealDetailResponse
+        suspend fun searchMealsByFirstLetter(s : Char) : MealDetailResponse?
+        suspend fun searchMealByName(name : String) : MealDetailResponse?
+        suspend fun getSingleRandomMeal() : MealDetailResponse
     }
 
     interface Local {

@@ -19,11 +19,16 @@ class IngredientViewModel @Inject constructor(
     private val _ingredients = MutableLiveData<MutableList<Ingredient>>()
     val ingredients: LiveData<MutableList<Ingredient>>
         get() = _ingredients
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     fun getIngredients() {
         viewModelScope.launch(Dispatchers.IO) {
+            if (_ingredients.value == null) _isLoading.postValue(true)
             val response = ingredientRepo.getIngredients()
             _ingredients.postValue(response.ingredients.toMutableList())
+            _isLoading.postValue(false)
         }
     }
 }
