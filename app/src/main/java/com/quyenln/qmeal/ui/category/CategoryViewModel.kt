@@ -19,6 +19,9 @@ class CategoryViewModel @Inject constructor(
     private val _categories = MutableLiveData<MutableList<Category>>()
     val categories: LiveData<MutableList<Category>>
         get() = _categories
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean>
+        get() = _isLoading
 
     init {
         getCategories()
@@ -26,8 +29,10 @@ class CategoryViewModel @Inject constructor(
 
     private fun getCategories() {
         viewModelScope.launch(Dispatchers.IO) {
+            if (_categories.value == null) _isLoading.postValue(true)
             val response = cateRepo.getCategories()
             _categories.postValue(response.categories.toMutableList())
+            _isLoading.postValue(false)
         }
     }
 }

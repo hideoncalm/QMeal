@@ -3,16 +3,11 @@ package com.quyenln.qmeal.ui
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
-import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.quyenln.qmeal.R
-import com.quyenln.qmeal.data.repository.Impl.CategoryRepository
-import com.quyenln.qmeal.data.source.remote.CategoryRemoteDataSource
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_main.*
-import timber.log.Timber
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {

@@ -8,6 +8,7 @@ object APIConfig {
     const val BASE_FILTER = "filter.php"
     const val BASE_LOOKUP = "lookup.php"
     const val BASE_SEARCH = "search.php"
+    const val BASE_RANDOM = "random.php"
 
     const val PARAM_I = "i"
     const val PARAM_C = "c"

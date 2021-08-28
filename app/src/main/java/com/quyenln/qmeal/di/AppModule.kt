@@ -1,6 +1,8 @@
 package com.quyenln.qmeal.di
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import androidx.room.Room
 import com.quyenln.qmeal.data.source.local.AppDatabase
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_URL
@@ -49,4 +51,11 @@ object AppModule {
     @Singleton
     @Provides
     fun provideMealDao(db: AppDatabase) = db.getMealDao()
+
+    @Singleton
+    @Provides
+    fun provideSharedPreference(
+        @ApplicationContext app: Context
+    ): SharedPreferences =
+        app.getSharedPreferences("com.quyenln.qmeal.shared", MODE_PRIVATE)
 }

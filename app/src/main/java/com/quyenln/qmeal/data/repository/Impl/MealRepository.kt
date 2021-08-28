@@ -17,6 +17,15 @@ class MealRepository @Inject constructor(
     override suspend fun getMealById(id: Int): MealDetailResponse =
         remote.getMealById(id)
 
+    override suspend fun searchMealByName(name: String): MealDetailResponse? =
+        remote.searchMealByName(name)
+
+    override suspend fun searchMealsByFirstLetter(s: Char): MealDetailResponse? =
+        remote.searchMealsByFirstLetter(s)
+
+    override suspend fun getSingleRandomMeal(): MealDetailResponse =
+        remote.getSingleRandomMeal()
+
     override suspend fun insertMeal(meal: MealDetail) =
         local.insertMeal(meal)
 

@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="green_mountain_meadow">#23BB72</color>
     <color name="color_semi_transparent">#60000000</color>
-
+    <color name="color_alto">#4BDFDFDF</color>
 </resources>

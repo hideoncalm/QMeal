@@ -8,6 +8,7 @@ import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_CATEGORY
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_FILTER
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_INGREDIENT
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_LOOKUP
+import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_RANDOM
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.BASE_SEARCH
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.PARAM_C
 import com.quyenln.qmeal.data.source.remote.utils.APIConfig.PARAM_F
@@ -58,13 +59,19 @@ interface APIService {
      * https://www.themealdb.com/api/json/v1/1/search.php?f=a
      */
     @GET(BASE_SEARCH)
-    suspend fun searchMealsByFirstLetter(@Query(PARAM_F) char: String)
+    suspend fun searchMealsByFirstLetter(@Query(PARAM_F) char: Char): MealDetailResponse?
 
     /**
      * Search meal by name
-     * https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiatav
+     * https://www.themealdb.com/api/json/v1/1/search.php?s=Apple Frangipan Tart
      */
     @GET(BASE_SEARCH)
-    suspend fun searchMealByName(@Query(PARAM_S) name: String)
+    suspend fun searchMealByName(@Query(PARAM_S) name: String): MealDetailResponse?
 
+    /**
+     * look up a random meal
+     * https://www.themealdb.com/api/json/v1/1/random.php
+     */
+    @GET(BASE_RANDOM)
+    suspend fun getSingleRandomMeal(): MealDetailResponse
 }
