@@ -15,7 +15,7 @@
         android:theme="@style/SplashTheme">
         <activity
             android:name=".ui.MainActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|screenSize|keyboardHidden|screenLayout"
             android:launchMode="singleTask">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
