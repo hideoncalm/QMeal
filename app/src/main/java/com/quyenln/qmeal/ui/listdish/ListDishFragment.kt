@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.quyenln.qmeal.R
+import com.quyenln.qmeal.base.OnItemClickListener
 import com.quyenln.qmeal.data.model.Meal
 import com.quyenln.qmeal.ui.listdish.adapter.MealAdapter
 import com.quyenln.qmeal.util.CustomProgressBar
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class ListDishFragment : Fragment(R.layout.fragment_dish_by_category),
-    MealAdapter.OnItemClickListener {
+    OnItemClickListener<Meal> {
 
     private val viewModel: ListDishViewModel by viewModels()
     private val adapter by lazy { MealAdapter(this) }
@@ -46,8 +47,8 @@ class ListDishFragment : Fragment(R.layout.fragment_dish_by_category),
         }
     }
 
-    override fun onItemClick(meal: Meal) {
-        val action = ListDishFragmentDirections.actionListDishFragmentToDishDetailFragment(meal.id)
+    override fun onItemClick(item: Meal) {
+        val action = ListDishFragmentDirections.actionListDishFragmentToDishDetailFragment(item.id)
         findNavController().navigate(action)
     }
 }

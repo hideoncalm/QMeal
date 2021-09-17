@@ -42,7 +42,7 @@ object AppModule {
     @Provides
     fun provideRoomDatabase(
         @ApplicationContext context: Context
-    ) =
+    ): AppDatabase =
         Room.databaseBuilder(context, AppDatabase::class.java, "qmeal.db")
             .fallbackToDestructiveMigration()
             .allowMainThreadQueries()

@@ -24,4 +24,9 @@
     <style name="CustomDialogTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
     </style>
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash_screen</item>
+        <item name="android:statusBarColor">@color/green_mountain_meadow</item>
+    </style>
 </resources>

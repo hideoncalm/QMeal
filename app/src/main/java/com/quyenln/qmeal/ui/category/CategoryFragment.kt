@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.quyenln.qmeal.R
+import com.quyenln.qmeal.base.OnItemClickListener
 import com.quyenln.qmeal.data.model.Category
 import com.quyenln.qmeal.ui.category.adapter.CategoryAdapter
 import com.quyenln.qmeal.util.CustomProgressBar
@@ -15,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_category.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class CategoryFragment : Fragment(R.layout.fragment_category), CategoryAdapter.OnItemClickListener {
+class CategoryFragment : Fragment(R.layout.fragment_category), OnItemClickListener<Category> {
 
     private val adapter by lazy {
         CategoryAdapter(this)
@@ -42,9 +43,9 @@ class CategoryFragment : Fragment(R.layout.fragment_category), CategoryAdapter.O
         }
     }
 
-    override fun onItemClick(category: Category) {
+    override fun onItemClick(item: Category) {
         val action =
-            CategoryFragmentDirections.actionCategoryFragmentToListDishFragment(category.name)
+            CategoryFragmentDirections.actionCategoryFragmentToListDishFragment(item.name)
         findNavController().navigate(action)
     }
 }

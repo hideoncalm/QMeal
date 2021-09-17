@@ -7,8 +7,9 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.quyenln.qmeal.R
+import com.quyenln.qmeal.base.OnItemClickListener
 import com.quyenln.qmeal.data.model.MealDetail
-import com.quyenln.qmeal.ui.listdish.adapter.SearchAdapter
+import com.quyenln.qmeal.ui.search.adapter.SearchAdapter
 import com.quyenln.qmeal.util.CustomProgressBar
 import com.quyenln.qmeal.util.closeKeyBoard
 import dagger.hilt.android.AndroidEntryPoint
@@ -16,8 +17,7 @@ import kotlinx.android.synthetic.main.fragment_search.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class SearchFragment : Fragment(R.layout.fragment_search), SearchAdapter.OnItemClickListener {
-
+class SearchFragment : Fragment(R.layout.fragment_search), OnItemClickListener<MealDetail> {
     private val viewModel: SearchViewModel by viewModels()
     private val adapter by lazy {
         SearchAdapter(this)
@@ -75,9 +75,10 @@ class SearchFragment : Fragment(R.layout.fragment_search), SearchAdapter.OnItemC
         }
     }
 
-    override fun onItemClick(meal: MealDetail) {
-        val action = SearchFragmentDirections.actionSearchFragmentToDishDetailFragment(meal.id)
+    override fun onItemClick(item: MealDetail) {
+        val action = SearchFragmentDirections.actionSearchFragmentToDishDetailFragment(item.id)
         findNavController().navigate(action)
     }
+
 
 }

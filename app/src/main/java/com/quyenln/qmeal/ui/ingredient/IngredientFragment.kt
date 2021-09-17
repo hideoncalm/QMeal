@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.quyenln.qmeal.R
+import com.quyenln.qmeal.base.OnItemClickListener
 import com.quyenln.qmeal.data.model.Ingredient
 import com.quyenln.qmeal.ui.ingredient.adapter.IngredientAdapter
 import com.quyenln.qmeal.util.CustomProgressBar
@@ -16,7 +17,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class IngredientFragment : Fragment(R.layout.fragment_ingredient),
-    IngredientAdapter.OnItemClickListener {
+    OnItemClickListener<Ingredient> {
 
     private val adapter: IngredientAdapter by lazy { IngredientAdapter(this) }
     private val viewModel: IngredientViewModel by viewModels()
@@ -44,11 +45,9 @@ class IngredientFragment : Fragment(R.layout.fragment_ingredient),
         }
     }
 
-    override fun onItemClick(ingredient: Ingredient) {
+    override fun onItemClick(item: Ingredient) {
         val action =
-            IngredientFragmentDirections.actionIngredientFragmentToIngredientDetailFragment(
-                ingredient
-            )
+            IngredientFragmentDirections.actionIngredientFragmentToIngredientDetailFragment(item)
         findNavController().navigate(action)
     }
 }

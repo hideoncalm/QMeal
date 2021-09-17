@@ -5,10 +5,13 @@ import android.app.Activity
 import android.app.Dialog
 import android.content.Context
 import com.quyenln.qmeal.R
+import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class CustomProgressBar @Inject constructor() {
-    private lateinit var dialog: CustomDialog
+
+    @Inject
+    lateinit var dialog: CustomDialog
 
     @SuppressLint("InflateParams")
     fun showProgressBar(activity: Activity) {
@@ -24,7 +27,10 @@ class CustomProgressBar @Inject constructor() {
         dialog.dismiss()
     }
 
-    class CustomDialog(context: Context) : Dialog(context, R.style.CustomDialogTheme) {
+    class CustomDialog @Inject constructor(
+        @ApplicationContext context: Context
+    ) :
+        Dialog(context, R.style.CustomDialogTheme) {
         init {
             window?.let { it.decorView.rootView?.setBackgroundResource(R.color.color_alto) }
             window?.let {

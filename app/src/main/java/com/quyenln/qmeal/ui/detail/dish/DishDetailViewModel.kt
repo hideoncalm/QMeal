@@ -2,8 +2,8 @@ package com.quyenln.qmeal.ui.detail.dish
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.quyenln.qmeal.base.BaseViewModel
 import com.quyenln.qmeal.data.model.MealDetail
 import com.quyenln.qmeal.data.repository.IMealRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DishDetailViewModel @Inject constructor(
     private val mealRepository: IMealRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _mealDetail = MutableLiveData<MealDetail>()
     val mealDetail: LiveData<MealDetail>
@@ -43,9 +43,11 @@ class DishDetailViewModel @Inject constructor(
             if (isFavorite.value == true) {
                 mealRepository.deleteMeal(meal)
                 _isFavorite.postValue(false)
+                setMessage("Deleted Success")
             } else {
                 mealRepository.insertMeal(meal)
                 _isFavorite.postValue(true)
+                setMessage("Inserted Success")
             }
         }
     }

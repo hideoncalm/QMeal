@@ -1,6 +1,7 @@
 package com.quyenln.qmeal.data.model
 
 import android.os.Parcelable
+import androidx.recyclerview.widget.DiffUtil
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
@@ -21,4 +22,17 @@ data class MealDetail(
     @SerializedName("strYoutube")
     var youtubeLink: String,
     val ingredients: String? = ""
-) : Parcelable
+) : Parcelable {
+    companion object {
+        val diffUtil = object : DiffUtil.ItemCallback<MealDetail>() {
+            override fun areItemsTheSame(oldItem: MealDetail, newItem: MealDetail): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: MealDetail, newItem: MealDetail): Boolean {
+                return oldItem == newItem
+            }
+
+        }
+    }
+}

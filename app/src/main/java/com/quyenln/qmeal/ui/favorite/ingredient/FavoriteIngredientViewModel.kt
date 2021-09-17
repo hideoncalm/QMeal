@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.quyenln.qmeal.base.BaseViewModel
 import com.quyenln.qmeal.data.model.Ingredient
 import com.quyenln.qmeal.data.repository.IIngredientRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,7 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class FavoriteIngredientViewModel @Inject constructor(
     private val ingredientRepo: IIngredientRepository
-) : ViewModel() {
+) : BaseViewModel() {
 
     private val _ingredients = MutableLiveData<MutableList<Ingredient>>()
     val ingredient: LiveData<MutableList<Ingredient>>

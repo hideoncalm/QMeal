@@ -5,7 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.quyenln.qmeal.R
-import com.quyenln.qmeal.ui.favorite.adapter.FavoriteFragmentAdapter
+import com.quyenln.qmeal.base.BaseViewPagerAdapter
 import com.quyenln.qmeal.ui.favorite.dish.FavoriteDishFragment
 import com.quyenln.qmeal.ui.favorite.ingredient.FavoriteIngredientFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_favorite.*
 @AndroidEntryPoint
 class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
-    private val fragments by lazy {
+    private val fragments: List<Fragment> by lazy {
         listOf(FavoriteDishFragment(), FavoriteIngredientFragment())
     }
     private val titles by lazy {
@@ -24,7 +24,7 @@ class FavoriteFragment : Fragment(R.layout.fragment_favorite) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = FavoriteFragmentAdapter(
+        val adapter = BaseViewPagerAdapter(
             childFragmentManager,
             fragments,
             titles

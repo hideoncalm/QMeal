@@ -1,67 +1,62 @@
 package com.quyenln.qmeal.ui.detail.ingredient
 
-import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.snackbar.Snackbar
 import com.quyenln.qmeal.R
+import com.quyenln.qmeal.base.BaseFragment
+import com.quyenln.qmeal.base.OnItemClickListener
 import com.quyenln.qmeal.data.model.Meal
+import com.quyenln.qmeal.databinding.FragmentIngredientDetailBinding
 import com.quyenln.qmeal.ui.listdish.adapter.MealAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_ingredient_detail.*
 
 @AndroidEntryPoint
-class IngredientDetailFragment : Fragment(R.layout.fragment_ingredient_detail),
-    MealAdapter.OnItemClickListener {
+class IngredientDetailFragment :
+    BaseFragment<FragmentIngredientDetailBinding, IngredientDetailViewModel>(),
+    OnItemClickListener<Meal> {
 
-    private val viewModel: IngredientDetailViewModel by viewModels()
+    override val layoutId: Int = R.layout.fragment_ingredient_detail
+    override val viewModel: IngredientDetailViewModel by viewModels()
     private val arg: IngredientDetailFragmentArgs by navArgs()
     private val adapter by lazy {
         MealAdapter(this)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        recyclerDish.adapter = adapter
-        textTitle.text = arg.ingredient.name
-        textIngredient.text = arg.ingredient.title
+    override fun initViews() {
+        binding.apply {
+            lifecycleOwner = viewLifecycleOwner
+            viewModelIngredient = viewModel
+            recyclerDish.adapter = adapter
+            textTitle.text = arg.ingredient.name
+            textIngredient.text = arg.ingredient.title ?: ""
+        }
         viewModel.apply {
             getMealsByIngredient(arg.ingredient.name)
             isFavoriteIngredient(arg.ingredient.id)
             meals.observe(viewLifecycleOwner, {
                 adapter.updateData(it)
             })
-            isFavorite.observe(viewLifecycleOwner, {
-                if (it == true) {
-                    buttonFavorite.visibility = View.GONE
-                    buttonUnFavorite.visibility = View.VISIBLE
-                } else {
-                    buttonFavorite.visibility = View.VISIBLE
-                    buttonUnFavorite.visibility = View.GONE
-                }
+            message.observe(viewLifecycleOwner, {
+                Snackbar.make(requireView(), it, Snackbar.LENGTH_SHORT).show()
             })
         }
 
-        buttonBack.setOnClickListener {
-            findNavController().popBackStack()
-        }
-        buttonFavorite.setOnClickListener {
-            viewModel.insertIngredient(arg.ingredient)
-            Snackbar.make(requireView(), "Inserted Success", Snackbar.LENGTH_SHORT).show()
-        }
-        buttonUnFavorite.setOnClickListener {
-            viewModel.insertIngredient(arg.ingredient)
-            Snackbar.make(requireView(), "Deleted Success", Snackbar.LENGTH_SHORT).show()
+        with(binding) {
+            buttonBack.setOnClickListener {
+                findNavController().popBackStack()
+            }
+            buttonFavorite.setOnClickListener {
+                viewModel.insertIngredient(arg.ingredient)
+            }
         }
     }
 
-    override fun onItemClick(meal: Meal) {
+    override fun onItemClick(item: Meal) {
         val action =
             IngredientDetailFragmentDirections.actionIngredientDetailFragmentToDishDetailFragment(
-                meal.id
+                item.id
             )
         findNavController().navigate(action)
     }

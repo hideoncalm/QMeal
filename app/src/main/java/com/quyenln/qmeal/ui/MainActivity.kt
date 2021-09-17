@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_QMeal)
         setContentView(R.layout.activity_main)
         setUpBottomNavigation()
     }
